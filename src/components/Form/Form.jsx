@@ -28,27 +28,27 @@ class Form extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
+        this.setState(prevState => ({ firstNameErr: !prevState.firstName ? 
+            
+            data.errors.firstNameEmpty
+            :
+            (prevState.firstName.toLowerCase() !== data.firstName ? data.errors.firstNameError : ''), 
+            
+            lastNameErr: !prevState.lastName ?
 
-        this.setState({
-            firstNameErr: !this.state.firstName ?
-                data.errors.firstNameEmpty
-                :
-                (this.state.firstName.toLowerCase() !== data.firstName ? data.errors.firstNameError : ''),
+            data.errors.lastNameEmpty
+            :
+            (prevState.lastName.toLowerCase() !== data.lastName ? data.errors.lastNameError : ''),
 
-            lastNameErr: (!this.state.lastName ?
-                data.errors.lastNameEmpty
-                :
-                (this.state.lastName.toLowerCase() !== data.lastName ? data.errors.lastNameError : '')),
-
-            passwordErr: (!this.state.password ?
+            passwordErr: !prevState.password ?
                 data.errors.passwordEmpty
                 :
-                (this.state.password.toLowerCase() !== data.password ? data.errors.passwordError : '')),
+                (prevState.password.toLowerCase() !== data.password ? data.errors.passwordError : ''),
 
-            isValid: (this.state.firstName.toLowerCase() === data.firstName &&
-                this.state.lastName.toLowerCase() === data.lastName &&
-                this.state.password.toLowerCase() === data.password)
-        });
+            isValid: (prevState.firstName.toLowerCase() === data.firstName &&
+            prevState.lastName.toLowerCase() === data.lastName &&
+            prevState.password.toLowerCase() === data.password)
+            }));
     }; 
 
     firstNameChanged = (event) => {
